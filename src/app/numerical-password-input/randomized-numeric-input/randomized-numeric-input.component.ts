@@ -8,28 +8,21 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 })
 export class RandomizedNumericInputComponent {
 
-  @Input() currentNumber: Number;
-  @Output() onCurrentNumberChange = new EventEmitter<Number>();
-  availableNumbers: Array<Number> = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, -1, -1]; // Numbers to be randomized
+  @Input() currentNumber: number;
+  @Output() currentNumberChange = new EventEmitter<number>();
+  availableNumbers: Array<number> = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, -1, -1]; // Numbers to be randomized
 
   constructor() {
     this.randomizeNumbers();
   }
 
-  numberClicked(event) {
-    let value;
-    // check whether the target is a button or span (due to material design extra tags)
-    if (event.target.childElementCount > 0) {
-      value = event.target.value;
-    } else {
-      value = event.target.parentElement.value;
-    }
+  numberClicked(number) {
     // Emit an event with the current button value
-    this.onCurrentNumberChange.emit(value);
+    this.currentNumberChange.emit(number);
   }
 
   randomizeNumbers() {
-    this.availableNumbers.sort(function () { return .5 - Math.random() });
+    this.availableNumbers.sort(function () { return .5 - Math.random(); });
   }
 
 }

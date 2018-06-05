@@ -7,18 +7,18 @@ import { config } from '../../environments/config';
 })
 export class NumericalPasswordInputComponent {
 
-  @Input() userPassword: String = "";
-  @Output() onPasswordMatch = new EventEmitter();
+  @Input() userPassword: String = '';
+  @Output() passwordMatch = new EventEmitter();
 
   appendNewNumber($event) {
     this.userPassword += $event;
     if (this.userPassword.length >= 9) {
       if (this.userPassword === config.password) {
         // Passwords are matched, Fire onPasswordMatch event
-        this.onPasswordMatch.emit();
+        this.passwordMatch.emit();
       } else {
         // Reset if password length exceeds 9 numbers
-        this.userPassword = "";
+        this.userPassword = '';
       }
     }
   }
