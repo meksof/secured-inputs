@@ -1,0 +1,9 @@
+<div class="result">
+  <ng-container *ngIf="isMatched else empty;">
+    <div class="text">You guessed the right password!!</div>
+    <a class="link" href="/" >Go home</a>
+  </ng-container>
+</div>
+<ng-template #empty>
+  <div class="text">&nbsp;</div>
+</ng-template>

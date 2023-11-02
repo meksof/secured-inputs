@@ -1,0 +1,5 @@
+# build image
+docker build -t secured-inputs .
+
+# run app
+docker run -it --rm -p 9898:4200 --name secured-inputs-container secured-inputs

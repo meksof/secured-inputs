@@ -1,22 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { NumericalPasswordInputComponent } from './numerical-password-input/numerical-password-input.component';
-import { PasswordViewerComponent } from './numerical-password-input/password-viewer/password-viewer.component';
-import { RandomizedNumericInputComponent } from './numerical-password-input/randomized-numeric-input/randomized-numeric-input.component';
-import { MaterialModule } from './shared/material/material.module';
+import { NumericalPasswordModule } from './numerical-password-input/numerical-password.module';
+import { ResultModule } from './result/result.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NumericalPasswordInputComponent,
-    PasswordViewerComponent,
-    RandomizedNumericInputComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    MaterialModule
+    BrowserAnimationsModule,
+    NoopAnimationsModule,
+
+    NumericalPasswordModule,
+    ResultModule
   ],
   providers: [],
   bootstrap: [AppComponent]

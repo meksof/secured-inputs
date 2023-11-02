@@ -1,4 +1,4 @@
-<ng-container *ngFor="let number of availableNumbers; let i = index;">
+<ng-container *ngFor="let number of numbers; let i = index;">
     <button *ngIf="number != -1" (click)="numberClicked(number)" mat-raised-button [value]="number" >{{number}}</button>
     <button *ngIf="number == -1" mat-raised-button>&nbsp;</button>
     <br *ngIf="(i +1) % 4 == 0">

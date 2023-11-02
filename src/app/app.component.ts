@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {NumericalPasswordInputComponent} from "./numerical-password-input/numerical-password-input.component";
 
 @Component({
   selector: 'app-root',
@@ -8,7 +7,11 @@ import {NumericalPasswordInputComponent} from "./numerical-password-input/numeri
   
 })
 export class AppComponent {
-  title = 'app';
-  passwordIsOK = false;
+  title = 'Secured Password Input';
+  isPasswordMatched = false;
 
+  passwordMatched(matched: boolean)
+  {
+    this.isPasswordMatched = matched;
+  }
 }

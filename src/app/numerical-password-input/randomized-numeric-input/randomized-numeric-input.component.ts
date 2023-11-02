@@ -1,28 +1,32 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { RandomizeService } from './randomize.service';
 
 @Component({
   selector: 'randomized-numeric-input',
   templateUrl: './randomized-numeric-input.component.html',
-  styleUrls: ['./randomized-numeric-input.component.scss'],
+  styleUrls: [
+    './randomized-numeric-input.component.scss'
+  ],
+  providers: [
+    RandomizeService
+  ]
 
 })
 export class RandomizedNumericInputComponent {
 
-  @Input() currentNumber: number;
-  @Output() currentNumberChange = new EventEmitter<number>();
-  availableNumbers: Array<number> = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, -1, -1]; // Numbers to be randomized
+  @Output() numClicked = new EventEmitter<number>();
+  public numbers: Array<number>;
 
-  constructor() {
-    this.randomizeNumbers();
+  constructor (
+    private randomizeService: RandomizeService
+  ) {
+    this.numbers = this.randomizeService.randomize();
   }
 
-  numberClicked(number) {
-    // Emit an event with the current button value
-    this.currentNumberChange.emit(number);
+  numberClicked(x: number) {
+    this.numClicked.emit(x);
   }
 
-  randomizeNumbers() {
-    this.availableNumbers.sort(function () { return .5 - Math.random(); });
-  }
+  
 
 }

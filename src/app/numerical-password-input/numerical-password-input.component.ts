@@ -6,21 +6,28 @@ import { config } from '../../environments/config';
   styleUrls: ['./numerical-password-input.component.scss']
 })
 export class NumericalPasswordInputComponent {
+  public password: string = '';
+  @Output() passwordMatched: EventEmitter<boolean> = new EventEmitter(false);
+  private numbers: Array<number> = [];
 
-  @Input() userPassword: String = '';
-  @Output() passwordMatch = new EventEmitter();
+  appendNumber(x: number) {
+    if (this.numbers.length > 9) {
+      // We don't want the password length to exceeds 9 numbers
+      return;
+    }
 
-  appendNewNumber($event) {
-    this.userPassword += $event;
-    if (this.userPassword.length >= 9) {
-      if (this.userPassword === config.password) {
-        // Passwords are matched, Fire onPasswordMatch event
-        this.passwordMatch.emit();
-      } else {
-        // Reset if password length exceeds 9 numbers
-        this.userPassword = '';
-      }
+    this.numbers = [...this.numbers, x];
+    this.password = this.numbers.join('');
+
+    if (this.password === config.password) {
+      // Passwords are matched, Fire passwordMatched event
+      this.passwordMatched.emit(true);
     }
   }
 
+  resetPassword()
+  {
+    this.numbers = [];
+    this.password = '';
+  }
 }

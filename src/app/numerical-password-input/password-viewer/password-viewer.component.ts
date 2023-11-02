@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @Component({
   selector: 'password-viewer',
@@ -7,6 +8,12 @@ import { Component, Input } from '@angular/core';
 })
 export class PasswordViewerComponent {
 
-  @Input() currentNumber: String;
-
+  @Input() password: string = '';
+  @Output() reset = new EventEmitter();
+  public hintLabel = 'Tap "1234"';
+  
+  resetClicked()
+  {
+    this.reset.emit();
+  }
 }

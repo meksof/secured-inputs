@@ -1,4 +1,4 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<numerical-password-input (passwordMatch)="passwordIsOK = true"></numerical-password-input>
-
-<div class="password-result" *ngIf="passwordIsOK">Password Match</div>
+<div class="container">
+    <app-result [isMatched]="isPasswordMatched"></app-result>
+    <numerical-password-input (passwordMatched)="passwordMatched($event)" *ngIf="!isPasswordMatched"></numerical-password-input>
+</div>

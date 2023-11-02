@@ -1,9 +1,6 @@
-# Secured Inputs
+# Secured numerical inputs
 
-Prevent​ ​Bots​ from revealing your password.
-Display a random numbers on the screen with some random placed empty blocks.
-
-Using angular 6 and material Design.
+Secured input, displaying a random placed numbers on the screen.
 
 ![screenshot](/screenshot.png?raw=true "Secured Inputs")
 

@@ -1,3 +1,3 @@
 export const config = {
-    password: "123456789"
+    password: "1234"
 }
