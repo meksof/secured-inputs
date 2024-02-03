@@ -4,9 +4,14 @@
     padding: 16px 0;
     .text{
         padding: 8px 0;
-        color: #1B5E20;
         font-size: 14px;
         line-height: 21px;
+    }
+    .success {
+        color: #1B5E20;
+    }
+    .error {
+        color: #ea3030
     }
     .text,
     .link {

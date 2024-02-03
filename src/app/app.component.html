@@ -1,4 +1,3 @@
 <div class="container">
-    <app-result [isMatched]="isPasswordMatched"></app-result>
-    <numerical-password-input (passwordMatched)="passwordMatched($event)" *ngIf="!isPasswordMatched"></numerical-password-input>
+    <router-outlet></router-outlet>
 </div>

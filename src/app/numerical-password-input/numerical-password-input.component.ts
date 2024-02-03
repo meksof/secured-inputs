@@ -1,33 +1,55 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
-import { config } from '../../environments/config';
+import { Component, Inject } from '@angular/core';
+
+import { CONFIG, AppConfig } from '../../environments/config';
+import { MAX_PASSWORD_LENGTH } from './numerical-password-input.constants';
+import { PasswordService } from './password.service';
+
 @Component({
-  selector: 'numerical-password-input',
-  templateUrl: './numerical-password-input.component.html',
-  styleUrls: ['./numerical-password-input.component.scss']
+    selector: 'numerical-password-input',
+    templateUrl: './numerical-password-input.component.html',
+    styleUrls: ['./numerical-password-input.component.scss']
 })
-export class NumericalPasswordInputComponent {
-  public password: string = '';
-  @Output() passwordMatched: EventEmitter<boolean> = new EventEmitter(false);
-  private numbers: Array<number> = [];
-
-  appendNumber(x: number) {
-    if (this.numbers.length > 9) {
-      // We don't want the password length to exceeds 9 numbers
-      return;
+export class NumericalPasswordInputComponent
+{
+    private _numbers: number[] = [];
+    public get password (): string
+    {
+        return this._numbers.join('');
+    }
+    private set password (value: Array<number>)
+    {
+        this._numbers = value;
     }
 
-    this.numbers = [...this.numbers, x];
-    this.password = this.numbers.join('');
+    constructor (
+        @Inject(CONFIG) private config: AppConfig,
+        private passwordService: PasswordService
+    )
+    {}
 
-    if (this.password === config.password) {
-      // Passwords are matched, Fire passwordMatched event
-      this.passwordMatched.emit(true);
+    notifyWhenMatched (x: number)
+    {
+        if (this._numbers.length > MAX_PASSWORD_LENGTH)
+        {
+            return;
+        }
+
+        this.password = [...this._numbers, x];
+
+        if (this.password === this.config.password)
+        {
+            this.notify();
+        }
     }
-  }
 
-  resetPassword()
-  {
-    this.numbers = [];
-    this.password = '';
-  }
+    resetPassword ()
+    {
+        this.password = [];
+    }
+
+    private notify ()
+    {
+        this.passwordService.matched = true;
+    }
+
 }

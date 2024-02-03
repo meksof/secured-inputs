@@ -1,19 +1,24 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
+import { AppConfig, CONFIG } from 'src/environments/config';
 
 @Component({
-  selector: 'password-viewer',
-  templateUrl: './password-viewer.component.html',
-  styleUrls: ['./password-viewer.component.scss']
+    selector: 'password-viewer',
+    templateUrl: './password-viewer.component.html',
+    styleUrls: ['./password-viewer.component.scss']
 })
-export class PasswordViewerComponent {
+export class PasswordViewerComponent
+{
+    @Input() password: string = '';
+    @Output() reset = new EventEmitter();
+    public hintLabel = `Tap "${this.config.password}"`;
 
-  @Input() password: string = '';
-  @Output() reset = new EventEmitter();
-  public hintLabel = 'Tap "1234"';
-  
-  resetClicked()
-  {
-    this.reset.emit();
-  }
+    constructor (
+        @Inject(CONFIG) private config: AppConfig
+    )
+    {}
+
+    resetClicked ()
+    {
+        this.reset.emit();
+    }
 }

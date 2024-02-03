@@ -1,20 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-
 import { ResultComponent } from './result.component';
-import { MaterialModule } from '../shared/material/material.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [
-    ResultComponent
-  ],
-  imports: [
-    CommonModule,
-    MaterialModule
-  ],
-  exports: [
-    ResultComponent
-  ]
+    declarations: [
+        ResultComponent
+    ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild([
+            {
+                path: '',
+                component: ResultComponent
+            }
+        ])
+    ]
 })
-export class ResultModule { }
+export class ResultModule
+{ }
