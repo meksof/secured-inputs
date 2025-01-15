@@ -2,7 +2,7 @@
 
 Secured input, displaying a random placed numbers on the screen.
 
-![screenshot](/screenshot.png?raw=true "Secured Inputs")
+![screenshot](/Login_page.png?raw=true "Secured Inputs")
 
 
 ## Install and run
